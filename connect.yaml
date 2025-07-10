@@ -1,35 +1,5 @@
-name: walbusch-connector
-version: 0.0.1
-
-configuration:
-  - key: region
-    name: Region
-    description: commercetools Composable Commerce API region
-    required: true
-    type: string
-  - key: projectKey
-    name: Project Key
-    description: commercetools Composable Commerce project key
-    required: true
-    type: string
-  - key: clientId
-    name: Client ID
-    description: commercetools Composable Commerce client ID
-    required: true
-    type: string
-  - key: clientSecret
-    name: Client Secret
-    description: commercetools Composable Commerce client secret
-    required: true
-    type: string
-  - key: scopes
-    name: Scopes
-    description: commercetools Composable Commerce client scopes
-    required: true
-    type: string
-
 deployAs:
-  - name: event
+  - name: mail-sender
     applicationType: event
     endpoint: /event
     scripts:
@@ -37,14 +7,54 @@ deployAs:
       preUndeploy: npm install && npm run build && npm run connector:pre-undeploy
     configuration:
       standardConfiguration:
-        - key: region
-          value: europe-west1.gcp
+        - key: CTP_REGION
+          description: commercetools Composable Commerce API region
+          default: europe-west1.gcp
+          required: true
+        - key: CTP_PROJECT_KEY
+          description: commercetools Composable Commerce project key
+          required: true
+        - key: CTP_CLIENT_ID
+          description: commercetools Composable Commerce client ID
+          required: true
+        - key: CTP_SCOPE
+          description: commercetools Composable Commerce client scope
+          required: true
+        - key: SENDER_EMAIL_ADDRESS
+          description: sender's email address displayed in the email
+          required: true
+        - key: CUSTOMER_REGISTRATION_TEMPLATE_ID
+          description: Identifier of customer registration email template stored in email
+            service provider
+          required: true
+        - key: CUSTOMER_PASSWORD_TOKEN_CREATION_TEMPLATE_ID
+          description: Identifier of password token creation email template stored in
+            email service provider
+          required: true
+        - key: ORDER_CONFIRMATION_TEMPLATE_ID
+          description: Identifier of order confirmation email template stored in email
+            service provider
+          required: true
+        - key: ORDER_STATE_CHANGE_TEMPLATE_ID
+          description: Identifier of order state change email
+            template stored in email service provider
+          required: true
+        - key: SHIPMENT_STATE_CHANGE_TEMPLATE_ID
+          description: Identifier of shipment state change email
+            template stored in email service provider
+          required: true
+        - key: ORDER_REFUND_TEMPLATE_ID
+          description: Identifier of order refund email template stored in email service
+            provider
+          required: true
+        - key: DEFAULT_LOCALE
+          description: Default Locale used to localize e.g. dates and prices
+          required: true
       securedConfiguration:
-        - key: projectKey
-          value: commercetools-poc-walbusch
-        - key: clientId
-          value: U0howiKrE88Stj0eRJHzo4S_
-        - key: clientSecret
-          value: ShjEWtuMEYndtYWYqT8VrpAsTV0UHFiw
-        - key: scopes
-          value: manage_project:commercetools-poc-walbusch
+        - key: CTP_CLIENT_SECRET
+          description: commercetools Composable Commerce client secret
+          required: true
+        - key: EMAIL_PROVIDER_API_KEY
+          description: The API key used to communicate with email provider
+          required: true
+ 
