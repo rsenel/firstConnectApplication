@@ -7,7 +7,7 @@ deployAs:
       preUndeploy: npm install && npm run build && npm run connector:pre-undeploy
     configuration:
       standardConfiguration:
-        - key: europe-west1.gcp
+        - key: mc.europe-west1.gcp
           description: commercetools Composable Commerce API region
           required: true
           default: "europe-west1.gcp"
