@@ -1,3 +1,33 @@
+name: walbusch-connector
+version: 0.0.1
+
+configuration:
+  - key: region
+    name: Region
+    description: commercetools Composable Commerce API region
+    required: true
+    type: string
+  - key: projectKey
+    name: Project Key
+    description: commercetools Composable Commerce project key
+    required: true
+    type: string
+  - key: clientId
+    name: Client ID
+    description: commercetools Composable Commerce client ID
+    required: true
+    type: string
+  - key: clientSecret
+    name: Client Secret
+    description: commercetools Composable Commerce client secret
+    required: true
+    type: string
+  - key: scopes
+    name: Scopes
+    description: commercetools Composable Commerce client scopes
+    required: true
+    type: string
+
 deployAs:
   - name: event
     applicationType: event
@@ -7,33 +37,14 @@ deployAs:
       preUndeploy: npm install && npm run build && npm run connector:pre-undeploy
     configuration:
       standardConfiguration:
-        - key: mc.europe-west1.gcp
-          description: commercetools Composable Commerce API region
-          required: true
-          default: "europe-west1.gcp"
+        - key: region
+          value: europe-west1.gcp
       securedConfiguration:
-        - key: commercetools-poc-walbusch
-          description: commercetools Composable Commerce project key
-          required: true
-        - key: U0howiKrE88Stj0eRJHzo4S_
-          description: commercetools Composable Commerce client ID
-          required: true
-        - key: ShjEWtuMEYndtYWYqT8VrpAsTV0UHFiw
-          description: commercetools Composable Commerce client secret
-          required: true
-        - key: manage_project:commercetools-poc-walbusch
-          description: commercetools Composable Commerce client scope
-          required: true
-  # - name: merchant-center-custom-application
-  #   applicationType: merchant-center-custom-application
-  #   configuration:
-  #     standardConfiguration:
-  #       - key: CUSTOM_APPLICATION_ID
-  #         description: The Custom Application ID is provided when you add a Custom Application in the Merchant Center
-  #         required: true
-  #       - key: CLOUD_IDENTIFIER
-  #         description: The identifier of the cloud Region that the Custom Application uses to connect to Composable Commerce. The values map to the actual Merchant Center API URL for that Region
-  #         default: 'gcp-eu'
-  #       - key: ENTRY_POINT_URI_PATH
-  #         description: The Application entry point URI path identified during registration of Custom Application
-  #         required: true
+        - key: projectKey
+          value: commercetools-poc-walbusch
+        - key: clientId
+          value: U0howiKrE88Stj0eRJHzo4S_
+        - key: clientSecret
+          value: ShjEWtuMEYndtYWYqT8VrpAsTV0UHFiw
+        - key: scopes
+          value: manage_project:commercetools-poc-walbusch
