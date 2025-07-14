@@ -63,7 +63,7 @@ export const post = async (request: Request, response: Response) => {
       .execute();
 
     // Execute the tasks in need
-    logger.info(customer);
+    logger.info(JSON.stringify(customer, null, 2));
   } catch (error) {
     throw new CustomError(400, `Bad request: ${error}`);
   }
