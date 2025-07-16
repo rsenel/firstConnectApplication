@@ -1,28 +1,48 @@
 deployAs:
+  - name: integration-views
+    applicationType: merchant-center-custom-view
+     configuration:
+       standardConfiguration:
+         - key: CUSTOM_VIEW_ID
+           description: The Custom View ID is provided when you add a Custom View in the Merchant Center
+           required: true
+         - key: CLOUD_IDENTIFIER
+           description: one of the following gcp-us, gcp-eu, aws-us, aws-eu
+           required: true
+           default: 'gcp-eu'
+         - key: GOOGLE_MAP_ORIGIN
+           description: the fake sender address to be used
+           required: true
+           default: 'Adams-Lehmann-Straße+44,+80797+München'
+       securedConfiguration:
+         - key: GOOGLE_MAP_KEY
+           description: The Google Map Key to be used
+           required: true
   - name: event
     applicationType: event
     endpoint: /event
     scripts:
-      postDeploy: npm install && npm run connector:post-deploy
-      preUndeploy: npm install && npm run connector:pre-undeploy
+      postDeploy: npm install && npm run build && npm run connector:post-deploy
+      preUndeploy: npm install && npm run build && npm run connector:pre-undeploy
     configuration:
       standardConfiguration:
-        - key: CTP_PROJECT_KEY
-          description: Project key of the Composable Commerce Project
+        - key: europe-west1.gcp
+          description: commercetools Composable Commerce API region
           required: true
-          default: 'default-key'
-        - key: CTP_REGION
-          description: Region where the Composable Commerce Project is hosted
-          required: true
+          default: "europe-west1.gcp"
       securedConfiguration:
-        - key: CTP_CLIENT_ID
-          description: client_id of an API Client for the Composable Commerce Project
+        - key: commercetools-poc-walbusch
+          description: commercetools Composable Commerce project key
           required: true
-        - key: CTP_CLIENT_SECRET
-          description: secret of an API Client for the Composable Commerce Project
+        - key: U0howiKrE88Stj0eRJHzo4S_
+          description: commercetools Composable Commerce client ID
           required: true
-        - key: CTP_SCOPE
-          description: scope of an API Client for the Composable Commerce Project
+        - key: ShjEWtuMEYndtYWYqT8VrpAsTV0UHFiw
+          description: commercetools Composable Commerce client secret
+          required: true
+        - key: manage_project:commercetools-poc-walbusch
+          description: commercetools Composable Commerce client scope
+          required: true
   # - name: merchant-center-custom-application
   #   applicationType: merchant-center-custom-application
   #   configuration:

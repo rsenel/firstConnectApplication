@@ -8,10 +8,10 @@ const config = {
 
   env: {
     development: {
-      initialProjectKey: 'tech-sales-good-store',
+      initialProjectKey: 'commercetools-poc-walbusch',
       hostUriPath:
         // '/tech-sales-good-store/orders/9a08bc59-3709-47ab-bae9-6654b85cad08/general',
-        '/tech-sales-good-store/customers/a5fc94a7-c479-4ed5-ac47-13d23890e725/general',
+        '/commercetools-poc-walbusch/customers',
     },
     production: {
       customViewId: '${env:CUSTOM_VIEW_ID}',
